@@ -4,14 +4,16 @@ import 'package:favorite_places/screens/place_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class Home extends ConsumerStatefulWidget {
-  const Home({super.key});
+class PlacesListScreen extends ConsumerStatefulWidget {
+  const PlacesListScreen
+({super.key});
 
   @override
-  ConsumerState<Home> createState() => _HomeState();
+  ConsumerState<PlacesListScreen
+> createState() => _HomeState();
 }
 
-class _HomeState extends ConsumerState<Home> {
+class _HomeState extends ConsumerState<PlacesListScreen> {
   @override
   Widget build(BuildContext context) {
     var watchPlaces = ref.watch(favoritePlaces);
@@ -36,18 +38,18 @@ class _HomeState extends ConsumerState<Home> {
           ? Center(child: Text("Pls Add Places", style: TextStyle(color:  Colors.white)))
           : ListView.builder(
               itemCount: watchPlaces.length,
-              itemBuilder: (context, index) => GestureDetector(
-                onTap: () {
+              itemBuilder: (context, index) => ListTile(
+                title: Text(watchPlaces[index], style: TextStyle(color: Colors.white)),
+                leading: Icon(Icons.place),
+                trailing: Icon(Icons.arrow_forward),
+            onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => PlaceDetail()),
                   );
                 },
-                child: Card(
-                  
-                  color: Colors.white,
-                  child: Text(watchPlaces[index]),
-                ),
+                
+           
               ),
             ),
     );

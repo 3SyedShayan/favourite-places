@@ -12,6 +12,11 @@ class AddPlace extends ConsumerStatefulWidget {
 class AddPlaceState extends ConsumerState<AddPlace> {
   var titleController = TextEditingController();
   @override
+  void dispose() {
+    titleController.dispose();
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -25,12 +30,15 @@ class AddPlaceState extends ConsumerState<AddPlace> {
       ),
       body: Column(
         children: [
-          Text("Add Place Screen"),
           TextFormField(
             controller: titleController,
+            
             decoration: InputDecoration(
+              hintStyle: TextStyle(color: Colors.white),
+              
               labelText: 'Place Name',
               border: OutlineInputBorder(),
+              
             ),
           ),
           SizedBox(height: 20),
