@@ -1,9 +1,10 @@
 import 'package:favorite_places/screens/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(ProviderScope(child: const MainApp()));
 }
 
 final ColorScheme colorScheme = ColorScheme.fromSeed(
@@ -31,6 +32,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: Home());
+    return MaterialApp(
+
+      home: Home(),
+      theme: themeData,
+      debugShowCheckedModeBanner: false,
+    
+    );
   }
 }
