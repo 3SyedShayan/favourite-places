@@ -10,11 +10,22 @@ class AddPlace extends ConsumerStatefulWidget {
 }
 
 class AddPlaceState extends ConsumerState<AddPlace> {
+  
   var titleController = TextEditingController();
   @override
   void dispose() {
     titleController.dispose();
     super.dispose();
+  }
+  void addPlace() {
+    if (titleController.text.isNotEmpty) {
+      ref.read(favoritePlaces.notifier).addString(titleController.text);
+      Navigator.pop(context);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Please enter a place name")),
+      );
+    }
   }
   @override
   Widget build(BuildContext context) {
@@ -31,10 +42,11 @@ class AddPlaceState extends ConsumerState<AddPlace> {
       body: Column(
         children: [
           TextFormField(
+            style: TextStyle(color: Theme.of(context).colorScheme.onSurface), // Use theme color
             controller: titleController,
             
             decoration: InputDecoration(
-              hintStyle: TextStyle(color: Colors.white),
+              hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface),
               
               labelText: 'Place Name',
               border: OutlineInputBorder(),
@@ -43,10 +55,9 @@ class AddPlaceState extends ConsumerState<AddPlace> {
           ),
           SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {
-              print("Place Added: ${titleController.text}");
-      ref.read(favoritePlaces.notifier).addString(titleController.text);
-              Navigator.pop(context);
+            onPressed:
+             () {
+addPlace();
             },
             child: Text("Add Place"),
           ),

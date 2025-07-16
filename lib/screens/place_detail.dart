@@ -13,7 +13,7 @@ class _PlaceDetailState extends ConsumerState<PlaceDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: Column(children: [
-     Text(ref.read(favoritePlaces)[0], style: TextStyle(fontSize: 24, color: Colors.white)),
+     Text(ref.read(favoritePlaces)[0].title, style: TextStyle(fontSize: 24, color: Colors.white)),
       ElevatedButton(
         onPressed: () {
           Navigator.pop(context);
