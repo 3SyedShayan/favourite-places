@@ -26,10 +26,7 @@ class _HomeState extends ConsumerState<PlacesListScreen> {
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AddPlace()),
-              );
+              Navigator.pushNamed(context, '/addPlace');
             },
           ),
         ],
@@ -43,10 +40,8 @@ class _HomeState extends ConsumerState<PlacesListScreen> {
                 leading: Icon(Icons.place),
                 trailing: Icon(Icons.arrow_forward),
             onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => PlaceDetail()),
-                  );
+                  Navigator.pushNamed(context, '/placeDetail', arguments: watchPlaces[index]);
+                 
                 },
                 
            

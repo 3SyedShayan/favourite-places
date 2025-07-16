@@ -18,7 +18,7 @@ class _PlaceDetailState extends ConsumerState<PlaceDetail> {
         onPressed: () {
           Navigator.pop(context);
         },
-        child: Text("Back to Home"),
+        child: Text("Back to Home", style: Theme.of(context).textTheme.titleLarge,),
       ),
       // Add more UI elements as needed
     ],),);
