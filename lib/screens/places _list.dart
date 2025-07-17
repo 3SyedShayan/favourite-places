@@ -37,7 +37,9 @@ class _HomeState extends ConsumerState<PlacesListScreen> {
               itemCount: watchPlaces.length,
               itemBuilder: (context, index) => ListTile(
                 title: Text(watchPlaces[index].title, style: TextStyle(color: Colors.white)),
-                leading: Icon(Icons.place),
+                leading: CircleAvatar(
+                  backgroundImage: FileImage(watchPlaces[index].image),
+                ),
                 trailing: Icon(Icons.arrow_forward),
             onTap: () {
                   Navigator.pushNamed(context, '/placeDetail', arguments: watchPlaces[index]);

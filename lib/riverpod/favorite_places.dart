@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:favorite_places/model/place.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,8 +11,8 @@ return FavoritePlaces();
 
 class FavoritePlaces extends StateNotifier<List<Place>> {
   FavoritePlaces() : super( []);
-  void addString(String place) {
-    Place newPlace = Place(title: place);
+  void addString(String place, File image) {
+    Place newPlace = Place(title: place, image: image);
     state = [newPlace, ...state];
   }
 

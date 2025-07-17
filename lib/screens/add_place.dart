@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:favorite_places/riverpod/favorite_places.dart';
 import 'package:favorite_places/widgets/image_input.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +13,7 @@ class AddPlace extends ConsumerStatefulWidget {
 }
 
 class AddPlaceState extends ConsumerState<AddPlace> {
-  
+  File? selectedImage;
   var titleController = TextEditingController();
   @override
   void dispose() {
@@ -19,8 +21,8 @@ class AddPlaceState extends ConsumerState<AddPlace> {
     super.dispose();
   }
   void addPlace() {
-    if (titleController.text.isNotEmpty) {
-      ref.read(favoritePlaces.notifier).addString(titleController.text);
+    if (titleController.text.isNotEmpty || selectedImage != null) {
+      ref.read(favoritePlaces.notifier).addString(titleController.text, selectedImage!);
       Navigator.pop(context);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -55,7 +57,11 @@ class AddPlaceState extends ConsumerState<AddPlace> {
             ),
           ),
           SizedBox(height: 20),
-          ImageInput(),
+          ImageInput(onPickImage: (image) {
+            setState(() {
+              selectedImage = image;
+            });
+          },),
           SizedBox(height: 20),
           ElevatedButton(
             onPressed:
