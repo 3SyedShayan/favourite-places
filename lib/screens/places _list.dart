@@ -42,7 +42,9 @@ class _HomeState extends ConsumerState<PlacesListScreen> {
                 ),
                 trailing: Icon(Icons.arrow_forward),
             onTap: () {
-                  Navigator.pushNamed(context, '/placeDetail', arguments: watchPlaces[index]);
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => PlaceDetail(placeIndex: index),
+                  ));
                  
                 },
                 

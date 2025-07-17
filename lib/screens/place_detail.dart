@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PlaceDetail extends ConsumerStatefulWidget {
-  const PlaceDetail({super.key});
-
+   PlaceDetail({super.key, required this.placeIndex});
+int placeIndex;
   @override
   ConsumerState<PlaceDetail> createState() => _PlaceDetailState();
 }
@@ -12,15 +12,23 @@ class PlaceDetail extends ConsumerStatefulWidget {
 class _PlaceDetailState extends ConsumerState<PlaceDetail> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Column(children: [
-     Text(ref.read(favoritePlaces)[0].title, style: TextStyle(fontSize: 24, color: Colors.white)),
-      ElevatedButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        child: Text("Back to Home", style: Theme.of(context).textTheme.titleLarge,),
+    return Scaffold(body: Stack(children: [
+      Image.file(ref.read(favoritePlaces)[widget.placeIndex].image, fit: BoxFit.cover, height: double.infinity, width: double.infinity,),
+      Positioned(
+        top: 50,
+        left: 20,
+        child: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
-      // Add more UI elements as needed
-    ],),);
+      Positioned(
+        bottom: 20,
+        left: 20,
+        child: Text(ref.watch(favoritePlaces)[widget.placeIndex].title, style: TextStyle(color: Colors.white, fontSize: 24),),
+      ),
+    ],));
   }
 }

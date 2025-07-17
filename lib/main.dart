@@ -40,10 +40,15 @@ class MainApp extends StatelessWidget {
  initialRoute: '/',
        theme: themeData,
       debugShowCheckedModeBanner: false,
+      
     routes: {
         '/': (context) => PlacesListScreen(),
         '/addPlace': (context) => AddPlace(),
-        '/placeDetail': (context) => PlaceDetail(),
+
+     
+        
+        
+
       },
     );
   }
