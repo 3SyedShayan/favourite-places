@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:favorite_places/riverpod/favorite_places.dart';
 import 'package:favorite_places/widgets/image_input.dart';
+import 'package:favorite_places/widgets/locations_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,16 +21,20 @@ class AddPlaceState extends ConsumerState<AddPlace> {
     titleController.dispose();
     super.dispose();
   }
+
   void addPlace() {
     if (titleController.text.isNotEmpty || selectedImage != null) {
-      ref.read(favoritePlaces.notifier).addString(titleController.text, selectedImage!);
+      ref
+          .read(favoritePlaces.notifier)
+          .addString(titleController.text, selectedImage!);
       Navigator.pop(context);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Please enter a place name")),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Please enter a place name")));
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,28 +50,34 @@ class AddPlaceState extends ConsumerState<AddPlace> {
       body: Column(
         children: [
           TextFormField(
-            style: TextStyle(color: Theme.of(context).colorScheme.onSurface), // Use theme color
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
+            ), // Use theme color
             controller: titleController,
-            
+
             decoration: InputDecoration(
-              hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface),
-              
+              hintStyle: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+
               labelText: 'Place Name',
               border: OutlineInputBorder(),
-              
             ),
           ),
           SizedBox(height: 20),
-          ImageInput(onPickImage: (image) {
-            setState(() {
-              selectedImage = image;
-            });
-          },),
+          ImageInput(
+            onPickImage: (image) {
+              setState(() {
+                selectedImage = image;
+              });
+            },
+          ),
+          SizedBox(height: 20),
+          LocationInput(),
           SizedBox(height: 20),
           ElevatedButton(
-            onPressed:
-             () {
-addPlace();
+            onPressed: () {
+              addPlace();
             },
             child: Text("Add Place"),
           ),

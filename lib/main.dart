@@ -1,5 +1,4 @@
 import 'package:favorite_places/screens/add_place.dart';
-import 'package:favorite_places/screens/place_detail.dart';
 import 'package:favorite_places/screens/places%20_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -35,20 +34,13 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
-
- initialRoute: '/',
-       theme: themeData,
+      initialRoute: '/',
+      theme: themeData,
       debugShowCheckedModeBanner: false,
-      
-    routes: {
+
+      routes: {
         '/': (context) => PlacesListScreen(),
         '/addPlace': (context) => AddPlace(),
-
-     
-        
-        
-
       },
     );
   }

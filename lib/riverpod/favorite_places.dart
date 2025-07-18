@@ -1,16 +1,16 @@
 import 'dart:io';
 
 import 'package:favorite_places/model/place.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final favoritePlaces = StateNotifierProvider<FavoritePlaces, List<Place>>  ((ref) {
-return FavoritePlaces();
-}
-);
+final favoritePlaces = StateNotifierProvider<FavoritePlaces, List<Place>>((
+  ref,
+) {
+  return FavoritePlaces();
+});
 
 class FavoritePlaces extends StateNotifier<List<Place>> {
-  FavoritePlaces() : super( []);
+  FavoritePlaces() : super([]);
   void addString(String place, File image) {
     Place newPlace = Place(title: place, image: image);
     state = [newPlace, ...state];
@@ -19,5 +19,4 @@ class FavoritePlaces extends StateNotifier<List<Place>> {
   void removeString(String place) {
     state = state.where((item) => item != place).toList();
   }
-
 }

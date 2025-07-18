@@ -1,5 +1,4 @@
 import 'package:favorite_places/riverpod/favorite_places.dart';
-import 'package:favorite_places/screens/add_place.dart';
 import 'package:favorite_places/screens/place_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,8 +16,6 @@ class _HomeState extends ConsumerState<PlacesListScreen> {
   @override
   Widget build(BuildContext context) {
     var watchPlaces = ref.watch(favoritePlaces);
-
-    print("UI is rebuild");
     return Scaffold(
       appBar: AppBar(
         title: Text("Home Screen"),
