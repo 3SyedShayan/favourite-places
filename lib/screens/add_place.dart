@@ -15,6 +15,7 @@ class AddPlace extends ConsumerStatefulWidget {
 
 class AddPlaceState extends ConsumerState<AddPlace> {
   File? selectedImage;
+  String? locationName;
   var titleController = TextEditingController();
   @override
   void dispose() {
@@ -26,7 +27,7 @@ class AddPlaceState extends ConsumerState<AddPlace> {
     if (titleController.text.isNotEmpty || selectedImage != null) {
       ref
           .read(favoritePlaces.notifier)
-          .addString(titleController.text, selectedImage!);
+          .addString(titleController.text, selectedImage!, locationName!);
       Navigator.pop(context);
     } else {
       ScaffoldMessenger.of(
@@ -73,7 +74,11 @@ class AddPlaceState extends ConsumerState<AddPlace> {
             },
           ),
           SizedBox(height: 20),
-          LocationInput(),
+          LocationInput(
+            onSelectLocation: (location) {
+              locationName = location;
+            },
+          ),
           SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {

@@ -11,8 +11,8 @@ final favoritePlaces = StateNotifierProvider<FavoritePlaces, List<Place>>((
 
 class FavoritePlaces extends StateNotifier<List<Place>> {
   FavoritePlaces() : super([]);
-  void addString(String place, File image) {
-    Place newPlace = Place(title: place, image: image);
+  void addString(String place, File image, String location) {
+    Place newPlace = Place(title: place, image: image, location: location);
     state = [newPlace, ...state];
   }
 
